@@ -238,11 +238,11 @@ body {
 .radio_box .radio_btn {
   width: 5.139vw;
   height: 5.139vw;
-  background-image: url("../img/radio_off.png");
+  background-image: url("./radio_off.png");
   background-size: cover;
 }
 .radio_box > input:checked ~ .radio_btn {
-  background-image: url("../img/radio_on.png");
+  background-image: url("./radio_on.png");
 }
 .radio_box .radio_txt {
   line-height: 5.139vw;
@@ -291,23 +291,23 @@ body {
 }
 .rating_item .rating_star.first {
   color: #ffe36c;
-  background-image: url("../img/1st_place.png");
+  background-image: url("./1st_place.png");
 }
 .rating_item .rating_star.second {
   color: #7e680b;
-  background-image: url("../img/2nd_place.png");
+  background-image: url("./2nd_place.png");
 }
 .rating_item .rating_star.third {
   color: #ffffff;
-  background-image: url("../img/3rd_place.png");
+  background-image: url("./3rd_place.png");
 }
 .rating_item .rating_star.fourth {
   color: #ffffff;
-  background-image: url("../img/4th_place.png");
+  background-image: url("./4th_place.png");
 }
 .rating_item .rating_star.fifth {
   color: #8f8f8f;
-  background-image: url("../img/5th_place.png");
+  background-image: url("./5th_place.png");
 }
 .rating_item + .rating_item {
   border-left: 1px dashed #e6e6e6;

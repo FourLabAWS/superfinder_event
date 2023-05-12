@@ -224,6 +224,33 @@
         //     openJudgePopup();
         //   }
         // });
+        $("#HZ_LNTH, #VR_LNTH, #PHONE_NUM, #onSave")
+          .prop("disabled", true)
+          .prop("tabindex", -1);
+
+        $("#PLC_ID").keyup(function () {
+          if ($(this).val()) {
+            $("#HZ_LNTH").prop("disabled", false);
+            $("#VR_LNTH").prop("disabled", false);
+          } else {
+            $("#HZ_LNTH").prop("disabled", true);
+            $("#VR_LNTH").prop("disabled", true);
+          }
+          $("span").prop("hidden", true);
+          $(".tab_row").prop("hidden", true);
+          $(".tab_text").prop("hidden", true);
+          $(".input_box.info").prop("hidden", true);
+          $(".btn_wrap").prop("hidden", true);
+          $("#PHONE_NUM").prop("hidden", true);
+          $("#golfPlaceInput").prop("hidden", true);
+          $("#HZ_LNTH").prop("hidden", true);
+          $("#VR_LNTH").prop("hidden", true);
+          $("#Search").prop("hidden", true);
+          $("#radioYes").prop("hidden", true);
+          $("#radioNo").prop("hidden", true);
+          $("input[type='submit']").prop("hidden", true);
+          $("button[type='submit']").prop("hidden", true);
+        });
 
         $("#HZ_LNTH").keydown(function (event) {
           if (event.keyCode == 8 || event.keyCode == 46) {
@@ -242,6 +269,10 @@
         });
 
         $("#VR_LNTH").on("input", function () {
+          this.value = this.value.replace(/[^0-9]/g, "");
+        });
+
+        $("#PHONE_NUM").on("input", function () {
           this.value = this.value.replace(/[^0-9]/g, "");
         });
 
@@ -678,7 +709,7 @@
             </div>
             <br />
             <div class="btn_wrap">
-              <button type="submit" onclick="onSave()">제출하기</button>
+              <button type="submit" id="onSave" onclick="onSave()">제출하기</button>
             </div>
           </div>
         </div>

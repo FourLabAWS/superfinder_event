@@ -29,6 +29,7 @@
           var PLC_NM = place.name;
 
           $("#PLC_ID").val(PLC_ID);
+          $("#PLC_ID").change();
           $("#PLC_NM").val(PLC_NM);
           $("#autocomplete").val(PLC_NM);
           localStorage.setItem("PLC_NM", PLC_NM);
@@ -228,7 +229,7 @@
           .prop("disabled", true)
           .prop("tabindex", -1);
 
-        $("#PLC_ID").keyup(function () {
+        $("#PLC_ID").change(function () {
           if ($(this).val()) {
             $("#HZ_LNTH").prop("disabled", false);
             $("#VR_LNTH").prop("disabled", false);
@@ -236,6 +237,7 @@
             $("#HZ_LNTH").prop("disabled", true);
             $("#VR_LNTH").prop("disabled", true);
           }
+
           $("span").prop("hidden", true);
           $(".tab_row").prop("hidden", true);
           $(".tab_text").prop("hidden", true);
@@ -250,6 +252,29 @@
           $("#radioNo").prop("hidden", true);
           $("input[type='submit']").prop("hidden", true);
           $("button[type='submit']").prop("hidden", true);
+        });
+
+        $("#PLC_ID").change(function () {
+          if ($(this).val()) {
+            $("#HZ_LNTH, #VR_LNTH, #PHONE_NUM, #onSave")
+              .prop("disabled", false)
+              .removeAttr("tabindex");
+
+            $("span").prop("hidden", false);
+            $(".tab_row").prop("hidden", false);
+            $(".tab_text").prop("hidden", false);
+            $(".input_box.info").prop("hidden", false);
+            $(".btn_wrap").prop("hidden", false);
+            $("#PHONE_NUM").prop("hidden", false);
+            $("#golfPlaceInput").prop("hidden", false);
+            $("#HZ_LNTH").prop("hidden", false);
+            $("#VR_LNTH").prop("hidden", false);
+            $("#Search").prop("hidden", false);
+            $("#radioYes").prop("hidden", false);
+            $("#radioNo").prop("hidden", false);
+            $("input[type='submit']").prop("hidden", false);
+            $("button[type='submit']").prop("hidden", false);
+          }
         });
 
         $("#HZ_LNTH").keydown(function (event) {

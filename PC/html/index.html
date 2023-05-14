@@ -338,10 +338,10 @@
             !isNaN(vr_ln) && vr_ln >= VR_LNTH_MIN && vr_ln <= VR_LNTH_MAX;
 
           if (hz_valid && vr_valid) {
-            $("button[type='submit']").prop("disabled", false);
+            $("button[type='button']").prop("disabled", false);
             $("#input_guide").hide();
           } else {
-            $("button[type='submit']").prop("disabled", true);
+            $("button[type='button']").prop("disabled", true);
             $("#input_guide").show();
           }
 
@@ -423,6 +423,13 @@
           "",
           `width=${width},height=${height},top=${top},left=${left}`
         );
+
+        // 팝업이 차단되었는지 확인
+        if (alertWindow == null || typeof alertWindow == "undefined") {
+          alert(
+            "팝업이 차단되었습니다. 브라우저의 팝업 차단 설정을 해제해주세요."
+          );
+        }
       }
 
       function onSave() {

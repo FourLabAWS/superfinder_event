@@ -35,7 +35,16 @@
           localStorage.setItem("PLC_NM", PLC_NM);
           $("#search-button").prop("disabled", false);
 
-          const keywords = ["골프", "골프장", "클럽", "힐", "CC", "GC", "GOLF", "CLUB"];
+          const keywords = [
+            "골프",
+            "골프장",
+            "클럽",
+            "힐",
+            "CC",
+            "GC",
+            "GOLF",
+            "CLUB",
+          ];
           let isGolfPlace = false;
           for (let i = 0; i < keywords.length; i++) {
             if (PLC_NM.includes(keywords[i])) {
@@ -121,7 +130,7 @@
               }
             },
             error: function (jqXHR, textStatus, errorThrown) {
-              alert("서버와 통신 중 오류가 발생하였습니다.");
+              openAlert("서버와 통신 중 오류가 발생하였습니다.");
             },
           });
 
@@ -279,13 +288,13 @@
 
         $("#HZ_LNTH").keydown(function (event) {
           if (event.keyCode == 8 || event.keyCode == 46) {
-            $("#input-guide").hide();
+            $("#input_guide").hide();
           }
         });
 
         $("#VR_LNTH").keydown(function (event) {
           if (event.keyCode == 8 || event.keyCode == 46) {
-            $("#input-guide").hide();
+            $("#input_guide").hide();
           }
         });
 
@@ -318,20 +327,22 @@
         const VR_LNTH_MIN = 27;
         const VR_LNTH_MAX = 45;
 
-        $("#input-guide").hide();
+        $("#input_guide").hide();
 
         $("#HZ_LNTH, #VR_LNTH").on("input", function () {
           var hz_ln = parseInt($("#HZ_LNTH").val());
           var vr_ln = parseInt($("#VR_LNTH").val());
-          var hz_valid = !isNaN(hz_ln) && hz_ln >= HZ_LNTH_MIN && hz_ln <= HZ_LNTH_MAX;
-          var vr_valid = !isNaN(vr_ln) && vr_ln >= VR_LNTH_MIN && vr_ln <= VR_LNTH_MAX;
+          var hz_valid =
+            !isNaN(hz_ln) && hz_ln >= HZ_LNTH_MIN && hz_ln <= HZ_LNTH_MAX;
+          var vr_valid =
+            !isNaN(vr_ln) && vr_ln >= VR_LNTH_MIN && vr_ln <= VR_LNTH_MAX;
 
           if (hz_valid && vr_valid) {
-            $("button[type='submit']").prop("disabled", false);
-            $("#input-guide").hide();
+            $("button[type='button']").prop("disabled", false);
+            $("#input_guide").hide();
           } else {
-            $("button[type='submit']").prop("disabled", true);
-            $("#input-guide").show();
+            $("button[type='button']").prop("disabled", true);
+            $("#input_guide").show();
           }
 
           var guideText =
@@ -343,7 +354,7 @@
             HZ_LNTH_MAX +
             " x " +
             VR_LNTH_MAX;
-          $("#input-guide").text(guideText);
+          $("#input_guide").text(guideText);
         });
       });
 
@@ -382,13 +393,52 @@
       //   // });
       // }
 
+      function openPopup() {
+        var url = "./popup_confirm.html";
+
+        var w = 500;
+        var h = 300;
+        var left = screen.width / 2 - w / 2;
+        var top = screen.height / 2 - h / 2;
+
+        var popup = window.open(
+          url,
+          "popup",
+          "width=" + w + ",height=" + h + ",top=" + top + ",left=" + left
+        );
+
+        popup.onload = function () {
+          popup.focus();
+        };
+      }
+
+      function openAlert(text) {
+        var width = 500;
+        var height = 300;
+        var left = screen.width / 2 - width / 2;
+        var top = screen.height / 2 - height / 2;
+
+        var alertWindow = window.open(
+          `alert.html?text=${encodeURIComponent(text)}`,
+          "",
+          `width=${width},height=${height},top=${top},left=${left}`
+        );
+
+        // 팝업이 차단되었는지 확인
+        if (alertWindow == null || typeof alertWindow == "undefined") {
+          alert(
+            "팝업이 차단되었습니다. 브라우저의 팝업 차단 설정을 해제해주세요."
+          );
+        }
+      }
+
       function onSave() {
         if (
           $("#autocomplete").val() === "" ||
           $("#autocomplete").val() === null ||
           $("#autocomplete").val() === undefined
         ) {
-          alert("골프장을 입력해주세요");
+          openAlert("골프장을 입력해주세요");
           $("#autocomplete").focus();
           $("input[type='submit']").prop("disabled", true);
           return;
@@ -399,7 +449,7 @@
           $("#HZ_LNTH").val() === null ||
           $("#HZ_LNTH").val() === undefined
         ) {
-          alert("가로 길이를 입력해주세요");
+          openAlert("가로 길이를 입력해주세요");
           $("#HZ_LNTH").focus();
           return;
         }
@@ -409,7 +459,7 @@
           $("#VR_LNTH").val() === null ||
           $("#VR_LNTH").val() === undefined
         ) {
-          alert("세로 길이를 입력해주세요");
+          openAlert("세로 길이를 입력해주세요");
           $("#VR_LNTH").focus();
           return;
         }
@@ -419,7 +469,7 @@
           $("#PHONE_NUM").val() === null ||
           $("#PHONE_NUM").val() === undefined
         ) {
-          alert("전화번호를 입력해주세요");
+          openAlert("전화번호를 입력해주세요");
           $("#PHONE_NUM").focus();
           return;
         }
@@ -431,48 +481,42 @@
         }
 
         if (!$("input[name='radio']:checked").val()) {
-          alert("동의 여부를 선택해주세요.");
+          openAlert("동의 여부를 선택해주세요.");
           return;
         }
 
-        if (
-          confirm(
-            "해당 정보로 제출하시겠습니까?\n\n깃발 크기를 정확하게 입력하지 않을 경우\n보상 대상에서 제외될 수 있습니다."
-          )
-        ) {
-          // 깃발을 등록합니다.
-          const params = {
-            PLC_ID: $("#PLC_ID").val(),
-            PLC_NM: $("#PLC_NM").val(),
-            HZ_LNTH: $("#HZ_LNTH").val(),
-            VR_LNTH: $("#VR_LNTH").val(),
-            PHONE_NUM: $("#PHONE_NUM").val(),
-            USE_YN: $("#USE_YN").val(),
-            CSNT_YN: $('input[name="radio"]:checked').val(),
-          };
+        // 깃발을 등록합니다.
+        const params = {
+          PLC_ID: $("#PLC_ID").val(),
+          PLC_NM: $("#PLC_NM").val(),
+          HZ_LNTH: $("#HZ_LNTH").val(),
+          VR_LNTH: $("#VR_LNTH").val(),
+          PHONE_NUM: $("#PHONE_NUM").val(),
+          USE_YN: $("#USE_YN").val(),
+          CSNT_YN: $('input[name="radio"]:checked').val(),
+        };
 
-          $.ajax({
-            url: "https://ji40ssrbe6.execute-api.ap-northeast-2.amazonaws.com/v1/flagEvnt",
-            type: "POST",
-            data: JSON.stringify(params),
-            contentType: "application/json",
-            success: function (data) {
-              //console.log("success:", data);
-              if (data.statusCode === 409) {
-                alert("해당 골프장에 깃발을 이미 등록했습니다.");
-              } else if (data.statusCode === 400) {
-                alert("해당 골프장은 깃발이 모두 등록되었습니다.");
-              } else {
-                alert("등록이 완료되었습니다.");
-                localStorage.setItem("phone", $("#PHONE_NUM").val());
-                location.reload();
-              }
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-              alert("서버와 통신 중 오류가 발생하였습니다.");
-            },
-          });
-        }
+        $.ajax({
+          url: "https://ji40ssrbe6.execute-api.ap-northeast-2.amazonaws.com/v1/flagEvnt",
+          type: "POST",
+          data: JSON.stringify(params),
+          contentType: "application/json",
+          success: function (data) {
+            //console.log("success:", data);
+            if (data.statusCode === 409) {
+              openAlert("해당 골프장에 깃발을 이미 등록했습니다.");
+            } else if (data.statusCode === 400) {
+              openAlert("해당 골프장은 깃발이 모두 등록되었습니다.");
+            } else {
+              openAlert("등록이 완료되었습니다.");
+              localStorage.setItem("phone", $("#PHONE_NUM").val());
+              location.reload();
+            }
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            openAlert("서버와 통신 중 오류가 발생하였습니다.");
+          },
+        });
       }
 
       // function Search() {
@@ -571,7 +615,7 @@
           $(".rating_box").html(rankHtml);
         },
         error: function (jqXHR, textStatus, errorThrown) {
-          alert("서버와 통신 중 오류가 발생하였습니다.");
+          openAlert("서버와 통신 중 오류가 발생하였습니다.");
         },
       });
 
@@ -586,7 +630,7 @@
           );
         },
         error: function (jqXHR, textStatus, errorThrown) {
-          alert("서버와 통신 중 오류가 발생하였습니다.");
+          openAlert("서버와 통신 중 오류가 발생하였습니다.");
         },
       });
     </script>
@@ -671,15 +715,25 @@
             </div>
             <div class="input_wrap">
               <div class="input_box info">
-                <input type="text" id="HZ_LNTH" name="HZ_LNTH" placeholder="가로(cm)" />
+                <input
+                  type="text"
+                  id="HZ_LNTH"
+                  name="HZ_LNTH"
+                  placeholder="가로(cm)"
+                />
               </div>
               <span>X</span>
               <div class="input_box info">
-                <input type="text" id="VR_LNTH" name="VR_LNTH" placeholder="세로(cm)" />
+                <input
+                  type="text"
+                  id="VR_LNTH"
+                  name="VR_LNTH"
+                  placeholder="세로(cm)"
+                />
               </div>
             </div>
             <div class="transparent"></div>
-            <p id="input-guide"></p>
+            <p id="input_guide"></p>
           </div>
           <div class="tab_row">
             <div class="transparent"></div>
@@ -734,7 +788,9 @@
             </div>
             <br />
             <div class="btn_wrap">
-              <button type="submit" id="onSave" onclick="onSave()">제출하기</button>
+              <button type="button" id="onSave" onclick="openPopup()">
+                제출하기
+              </button>
             </div>
           </div>
         </div>
@@ -761,7 +817,8 @@
         <script>
           function phoneNumCnt() {
             window.onload = function () {
-              document.querySelector(".section_title_box p").textContent = phoneNumCnt();
+              document.querySelector(".section_title_box p").textContent =
+                phoneNumCnt();
             };
           }
         </script>
@@ -794,7 +851,9 @@
             </div>
           </div>
           <div class="rating_warning">
-            <p class="warning_phrase">- 랭킹 TOP5에게는 앱 1년 무료 이용권이 지급되며,</p>
+            <p class="warning_phrase">
+              - 랭킹 TOP5에게는 앱 1년 무료 이용권이 지급되며,
+            </p>
             <p class="warning_phrase">
               TOP3에게는 앱 1년 무료 이용권과 함께
               <span>"미니 골드바" 추가 보상</span>을 드립니다.
@@ -812,41 +871,45 @@
           <p>-해당 경품 이벤트는 만00세 이상 참여 가능합니다.</p>
           <p>-하나의 골프장당 최초 1회만 참여가 가능합니다.</p>
           <p>
-            -이벤트 기간 내에 해당 웹페이지에서 <제출하기> 버튼을 누르셔야 신청됩니다.
+            -이벤트 기간 내에 해당 웹페이지에서 <제출하기> 버튼을 누르셔야
+            신청됩니다.
           </p>
           <p>
-            -보상받을 전화번호 정보 불일치, 연락 두절로 인한 재발송은 진행하지 않습니다.
+            -보상받을 전화번호 정보 불일치, 연락 두절로 인한 재발송은 진행하지
+            않습니다.
           </p>
           <p>
-            -정확도가 낮은 측정 결과 또는 비정상적인 입력은 별도의 통보 없이 보상 대상에서
-            제외됩니다.
+            -정확도가 낮은 측정 결과 또는 비정상적인 입력은 별도의 통보 없이
+            보상 대상에서 제외됩니다.
           </p>
           <p>
-            -이벤트 조건이 충족되지 않을 경우 정상 제출이 되어도 보상 지급이 불가합니다.
+            -이벤트 조건이 충족되지 않을 경우 정상 제출이 되어도 보상 지급이
+            불가합니다.
           </p>
           <p>
-            -지급되는 보상은 참여해주신 횟수와 정확도에 따라 다르며, 참여 횟수는 실시간
-            랭킹을 참고해주시기를 바랍니다.
+            -지급되는 보상은 참여해주신 횟수와 정확도에 따라 다르며, 참여 횟수는
+            실시간 랭킹을 참고해주시기를 바랍니다.
           </p>
           <p>
-            -보상은 안내된 상품권/상품으로 제공되며, 상황에 따라 경품이 변경 지급될 수
-            있습니다.
+            -보상은 안내된 상품권/상품으로 제공되며, 상황에 따라 경품이 변경
+            지급될 수 있습니다.
           </p>
           <p>-이벤트 보상 사진은 연출된 이미지로 실제와 다를 수 있습니다.</p>
           <p>
-            -기프티콘은 유효기간이 정해진 상품이며 해당 기간 내에 사용하지 않은 부분에
-            대한 책임은 지지 않습니다.
+            -기프티콘은 유효기간이 정해진 상품이며 해당 기간 내에 사용하지 않은
+            부분에 대한 책임은 지지 않습니다.
           </p>
           <p>
-            -이벤트 당첨 발표는 별도로 진행하지 않으며 당첨자분들에게 개별적으로 연락
-            드립니다.
+            -이벤트 당첨 발표는 별도로 진행하지 않으며 당첨자분들에게 개별적으로
+            연락 드립니다.
           </p>
           <p>
-            -보상 지급 시점은 이벤트 종료 후 깃발 크기 데이터 확인 후 1개월 이내입니다.
+            -보상 지급 시점은 이벤트 종료 후 깃발 크기 데이터 확인 후 1개월
+            이내입니다.
           </p>
           <p>
-            -수집된 개인정보는 당첨자 선정 및 경품 발송을 위해서만 사용되며, 이벤트 종료
-            후 30일 이내 폐기됩니다.
+            -수집된 개인정보는 당첨자 선정 및 경품 발송을 위해서만 사용되며,
+            이벤트 종료 후 30일 이내 폐기됩니다.
           </p>
           <p>-본 이벤트는 당사 및 제휴사 사정에 따라 변경될 수 있습니다.</p>
         </div>

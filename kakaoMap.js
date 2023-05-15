@@ -21,11 +21,11 @@ function placesSearchCB(data, status) {
     // 검색 목록을 표출합니다
     displayPlaces(data);
   } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-    alert("검색 결과가 존재하지 않습니다.");
-    return;
+    openAlert("골프장을 입력해주세요", "취소", "확인", undefined, popupClose);
+    return false;
   } else if (status === kakao.maps.services.Status.ERROR) {
-    alert("검색 결과 중 오류가 발생했습니다.");
-    return;
+    openAlert("골프장을 입력해주세요", "취소", "확인", undefined, popupClose);
+    return false;
   }
 }
 

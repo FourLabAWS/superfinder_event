@@ -41,8 +41,13 @@ function validateInputs() {
 
   for (let i = 0; i < inputs.length; i++) {
     let value = $(inputs[i].id).val();
+    if (inputs[i].id === "input[name='radio']") {
+      value = $(inputs[i].id + ":checked").val();
+    } else {
+      value = $(inputs[i].id).val();
+    }
     if (!value) {
-      openAlert(inputs[i].alertMessage);
+      openAlert(inputs[i].alertMessage, "취소", "확인", popupClose, popupClose);
       $(inputs[i].id).focus();
       $("input[type='button']").prop("disabled", true);
       return;
@@ -170,11 +175,16 @@ $(document).ready(function () {
     if ($(this).val()) {
       $("#HZ_LNTH").prop("disabled", false);
       $("#VR_LNTH").prop("disabled", false);
+      $("#HZ_LNTH, #VR_LNTH, #PHONE_NUM, #onSave")
+        .prop("disabled", false)
+        .removeAttr("tabindex");
+      hiddenFalse();
     } else {
       $("#HZ_LNTH").prop("disabled", true);
       $("#VR_LNTH").prop("disabled", true);
+
+      hiddenTrue();
     }
-    hiddenTrue();
   });
 
   $("#PLC_ID").change(function () {

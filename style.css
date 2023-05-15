@@ -3,7 +3,7 @@ body {
 }
 .wrap {
   background-color: #f4f4f4;
-  padding: 20px 30px 0;
+  padding: 20px 15px 0;
 }
 .section {
   display: flex;
@@ -21,13 +21,21 @@ body {
 }
 .prize {
   margin-bottom: 2.778vw;
-  height: 27.778vw;
-  border: 1px solid gray;
+  height: 36.944vw;
+  /* border: 1px solid gray; */
+  background-image: url(./prize_info.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 .warning_phrase {
   font-size: 2.222vw;
+  line-height: 3.611vw;
   color: #868686;
   font-weight: 400;
+  text-align: left;
+
+  display: flex;
 }
 .warning_phrase + .warning_phrase {
   margin-top: 0.972vw;
@@ -87,6 +95,7 @@ body {
   border: 2px solid #ffffff;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  padding: 0 !important;
   border-bottom: 1px dashed #e6e6e6;
   background-color: #f7f7f7;
 }
@@ -101,10 +110,16 @@ body {
 }
 .table_tab p.active {
   border: 2px solid #ff7960;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   background-color: #ff8871;
   color: #fff7f5;
+}
+.dashbar {
+  width: 100%;
+  border-bottom: 1px dashed #e6e6e6;
+  margin-top: 13.87vw;
+  margin-bottom: 10.818vw;
 }
 .tab_content {
   display: flex;
@@ -115,7 +130,6 @@ body {
   box-sizing: border-box;
 }
 .tab_title {
-  margin-top: 24.688vw;
   font-size: 5vw;
   color: #515151;
   font-weight: 900;
@@ -123,7 +137,7 @@ body {
 .tab_title_sub {
   margin-top: 1.389vw;
   line-height: 1.3;
-  font-size: 2.777vw;
+  font-size: 3.056vw;
   color: #515151;
   font-weight: 500;
   text-align: center;
@@ -143,10 +157,14 @@ body {
   position: relative;
   /* margin-top: 2.222vw; */
   width: 59.722vw;
-  background-image: url("./search.png");
+  /* background-image: url("./search.png");
   background-repeat: no-repeat;
   background-size: 2.778vw 2.778vw;
-  background-position: top 50% right 4.861vw;
+  background-position: top 50% right 4.861vw; */
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.389vw;
 }
 /* .input_box.search ~ .btn_wrap {
   margin-top: 2.222vw;
@@ -186,32 +204,32 @@ body {
   gap: 2.361vw;
   margin-top: 11.096vw;
   width: 100%;
-
   position: relative;
-}
-.tab_row.mt {
-  margin-top: 5.548vw !important;
 }
 .tab_row + .tab_row {
   margin-top: 2.778vw;
 }
+.tab_row.mt {
+  margin-top: 5.548vw !important;
+}
 .tab_text {
   /* flex: 1; */
-  min-width: 12.778vw;
+  min-width: 15.278vw;
   line-height: 9.861vw;
   text-align: center;
-  font-size: 2.778vw;
+  font-size: 3.056vw;
   color: #515151;
   font-weight: 700;
 }
-.tab_row > .input_box {
+.tab_row > .input_box,
+.tab_row .btn_wrap {
   flex: 2;
 }
-.tab_row .btn_wrap {
-  /* flex: 1; */
+
+/* .tab_row .btn_wrap {
   width: 20.833vw;
   min-width: 20.833vw;
-}
+} */
 .input_wrap {
   display: flex;
   align-items: center;
@@ -228,9 +246,25 @@ body {
   text-align: center;
 }
 .tab_row .transparent {
-  width: 6vw;
-  min-width: 6vw;
+  width: 2.778vw;
+  min-width: 2.778vw;
 }
+
+/*  */
+.placeList_wrap {
+  width: 100%;
+  max-height: 36.111vw;
+  overflow-y: scroll;
+
+  border: 1pxd;
+
+  -ms-overflow-style: none; /* 인터넷 익스플로러 */
+  scrollbar-width: none; /* 파이어폭스 */
+}
+.placeList_wrap::-webkit-scrollbar {
+  display: none; /* 크롬, 사파리, 오페라, 엣지 */
+}
+
 .warning_box {
   margin-top: 3.889vw;
   margin-bottom: 4.444vw;
@@ -256,7 +290,7 @@ body {
 }
 .radio_box .radio_txt {
   line-height: 5.139vw;
-  font-size: 2.778vw;
+  font-size: 3.333vw;
   color: #515151;
   font-weight: 400;
 }
@@ -366,8 +400,27 @@ body {
   font-size: 1.942vw;
 }
 /* popup */
+.popup_bg {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+.popup_bg.active {
+  display: block;
+}
 
 .popup_wrap {
+  position: absolute;
+  box-sizing: border-box;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -379,6 +432,7 @@ body {
   background: #ff8871;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
 }
+
 .popup_box {
   display: flex;
   flex-direction: column;
@@ -391,6 +445,7 @@ body {
   height: 43.056vw;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05));
 }
+
 .popup_txt {
   line-height: 6.944vw;
   font-size: 5vw;
@@ -399,12 +454,14 @@ body {
   text-align: center;
   letter-spacing: -0.03rem;
 }
+
 .popup_txt_cnf {
   line-height: 5.548vw;
   font-size: 4.438vw;
   color: #ffffff;
   text-align: center;
 }
+
 .popup_txt_cnf_sub {
   line-height: 3.329vw;
   font-size: 2.778vw;
@@ -412,9 +469,11 @@ body {
   text-align: center;
   margin-top: 1.11vw;
 }
+
 .popup_txt span {
   color: #474747;
 }
+
 .popup_btn_wrap {
   border: 2px solid #ffde50;
   border-radius: 9.306vw;
@@ -422,6 +481,7 @@ body {
   height: 9.306vw;
   background-color: #ffe36c;
 }
+
 .popup_btn_wrap button {
   border: none;
   outline: none;
@@ -432,6 +492,7 @@ body {
   font-weight: 700;
   background-color: transparent;
 }
+
 .popup_btns_container {
   display: flex;
   flex-direction: row;
@@ -439,14 +500,103 @@ body {
   align-items: center;
   gap: 10px;
 }
+
 .popup_btns_container .popup_btn_wrap {
   width: 38.835vw;
 }
-.popup_btns_container .popup_btn_wrap:first-of-type {
-  background-color: #f4f4f4;
-  border-color: #f4f4f4;
+
+.popup_btns_container .popup_btn_wrap.cancel {
+  background-color: #656565;
+  border-color: #656565;
 }
 
+.popup_btns_container .popup_btn_wrap.cancel button {
+  color: #fff;
+}
+
+/* 카카오api */
+#menu_wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  margin: 10px 0 30px 10px;
+  padding: 5px;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 1;
+  font-size: 12px;
+  border-radius: 10px;
+}
+#menu_wrap hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 2px solid #5f5f5f;
+  margin: 3px 0;
+}
+#menu_wrap .option {
+  text-align: center;
+}
+#menu_wrap .option p {
+  margin: 10px 0;
+}
+#menu_wrap .option button {
+  margin-left: 5px;
+}
+#placesList li {
+  list-style: none;
+}
+#placesList .item {
+  position: relative;
+  border-bottom: 1px dashed #e0e0e0;
+  overflow: hidden;
+  cursor: pointer;
+  min-height: 5.556vw;
+  text-align: left;
+
+  padding: 0.694vw 0;
+}
+#placesList .item span {
+  display: block;
+  margin-top: 4px;
+}
+#placesList .item h5,
+#placesList .item .info {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+/* #placesList .item .info {
+   padding: 10px 0 10px 55px; 
+} */
+#placesList .info .gray {
+  color: #8a8a8a;
+}
+#placesList .info .jibun {
+  padding-left: 26px;
+  background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png)
+    no-repeat;
+}
+#placesList .info .tel {
+  color: #009900;
+}
+#pagination {
+  margin: 10px auto;
+  text-align: center;
+}
+#pagination a {
+  display: inline-block;
+  margin-right: 10px;
+}
+#pagination .on {
+  font-weight: bold;
+  cursor: default;
+  color: #777;
+}
+
+/* 반응형 (폭 720px 이상) */
 @media screen and (min-width: 721px) {
   body {
     background-color: #f4f4f4;
@@ -466,11 +616,12 @@ body {
   }
   .prize {
     margin-bottom: 20px;
-    height: 200px;
-    border: 1px solid gray;
+    height: 274px;
+    /* border: 1px solid gray; */
   }
   .warning_phrase {
     font-size: 16px;
+    line-height: 26px;
   }
   .warning_phrase + .warning_phrase {
     margin-top: 10px;
@@ -496,14 +647,17 @@ body {
     line-height: 70px;
     font-size: 20px;
   }
+  .dashbar {
+    margin-top: 100px;
+    margin-bottom: 78px;
+  }
   .tab_title {
-    margin-top: 178px;
     font-size: 36px;
     font-weight: 900;
   }
   .tab_title_sub {
     margin-top: 10px;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 500;
   }
   .input_box {
@@ -541,7 +695,7 @@ body {
   .tab_text {
     min-width: 120px;
     line-height: 71px;
-    font-size: 20px;
+    font-size: 22px;
   }
   .tab_row .btn_wrap {
     width: 150px;
@@ -573,7 +727,7 @@ body {
   }
   .radio_box .radio_txt {
     line-height: 37px;
-    font-size: 20px;
+    font-size: 24px;
   }
   .radio_wrap ~ .btn_wrap {
     margin-top: 24px;
@@ -606,6 +760,10 @@ body {
   }
   .precautions p {
     font-size: 16px;
+  }
+
+  .input_box.search {
+    gap: 10px;
   }
 
   #input_guide {
@@ -652,5 +810,14 @@ body {
   }
   .popup_btns_container .popup_btn_wrap {
     width: 280px;
+  }
+
+  /* 카카오 */
+  .placeList_wrap {
+    max-height: 260px;
+  }
+  #placesList .item {
+    min-height: 40px;
+    padding: 5px 0;
   }
 }

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Superfinder 앱 출시 기념 이벤트</title>
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./fonts.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./index.js"></script>
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=26164c9c40976b16d2e8f74daaccb7b4&libraries=services"
+    ></script>
+    <script src="./kakaoMap.js"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="section">
+        <img src="./top_bg.png" alt="" />
+      </div>
+
+      <div class="section">
+        <h3 class="section_title">경품안내</h3>
+        <!-- 경품 이미지 확정시 이미지 넣기 -->
+        <div class="event_table prize"></div>
+        <p class="warning_phrase">- 경품 이미지는 실제와 다를 수 있습니다.</p>
+      </div>
+
+      <div class="section">
+        <h3 class="section_title">이벤트 안내</h3>
+        <div class="event_table">
+          <div class="table_left">
+            <p>이벤트 기간</p>
+            <p>이벤트 대상</p>
+            <p>혜택지급일</p>
+          </div>
+          <div class="table_right">
+            <p>1차 이벤트 5월 15일~6월 14일(1개월간 진행)</p>
+            <p>캐디, 야외골프장 깃발 크기 측정자</p>
+            <p>2023년 6월 14일(수) 이후 1개월 내 순차지급</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="event_table vertical first">
+          <div class="table_tab">
+            <p class="active">이벤트 참여하기</p>
+          </div>
+
+          <div class="tab_row">
+            <div class="transparent"></div>
+            <div class="tab_text">
+              <p>골프장검색</p>
+            </div>
+            <div class="input_box search">
+              <input
+                type="text"
+                id="keyword"
+                name="keyword"
+                placeholder="이벤트에 참여할 골프장을 검색하세요."
+                size="15"
+              />
+              <input type="hidden" id="PLC_ID" name="PLC_ID" />
+              <input type="hidden" id="PLC_NM" name="PLC_NM" />
+              <input type="hidden" id="USE_YN" name="USE_YN" value="Y" />
+
+              <!-- 검색목록  -->
+              <div class="placeList_wrap">
+                <ul id="placesList"></ul>
+              </div>
+            </div>
+            <div class="transparent"></div>
+          </div>
+
+          <div class="tab_row">
+            <div class="transparent"></div>
+            <div class="tab_text"></div>
+            <div class="btn_wrap">
+              <button id="search-button" onclick="searchPlaces()">조회</button>
+            </div>
+            <div class="transparent"></div>
+          </div>
+
+          <!-- 조회가능여부 -->
+          <div class="tab_row">
+            <div class="transparent"></div>
+            <div class="tab_text"></div>
+            <div id="place-guide"></div>
+            <div class="transparent"></div>
+          </div>
+
+          <div class="tab_row">
+            <div class="transparent"></div>
+            <div class="tab_text"></div>
+            <div>
+              <!-- <p id="place-guide"></p> -->
+              <div class="warning_phrase">
+                <p>-&nbsp;</p>
+                <p>한 개의 골프장당 최대 3명까지 참여가 가능합니다.</p>
+              </div>
+              <div class="warning_phrase">
+                <p>-&nbsp;</p>
+                <p>'참여불가'상태의 골프장은 참여하셔도 보상이 불가합니다.</p>
+              </div>
+            </div>
+            <div class="transparent"></div>
+          </div>
+
+          <!-- 2nd -->
+          <div class="tab_row">
+            <div class="transparent"></div>
+            <div class="tab_text">
+              <p>깃발크기</p>
+            </div>
+            <div class="input_wrap">
+              <div class="input_box info">
+                <input
+                  type="text"
+                  id="HZ_LNTH"
+                  name="HZ_LNTH"
+                  placeholder="가로(cm)"
+                />
+              </div>
+              <span>X</span>
+              <div class="input_box info">
+                <input
+                  type="text"
+                  id="VR_LNTH"
+                  name="VR_LNTH"
+                  placeholder="세로(cm)"
+                />
+              </div>
+              <p id="input_guide"></p>
+            </div>
+            <div class="transparent"></div>
+          </div>
+          <div class="tab_row">
+            <div class="transparent"></div>
+            <div class="tab_text">
+              <p>전화번호</p>
+            </div>
+            <div class="phone_num_area">
+            <div class="input_box info">
+              <input type="hidden" id="USER_ID" value="USER_ID" />
+              <input
+                type="text"
+                id="PHONE_NUM"
+                name="PHONE_NUM"
+                placeholder="'-'없이 숫자만 입력해주세요."
+                maxlength="11"
+              />
+            </div>
+          </div>
+            <div class="transparent"></div>
+          </div>
+          <!-- 깃발크기 입력 설명 
+          <div class="warning_box">
+            <p class="warning_phrase">
+              - 깃발 크기가 정확하지 않을 경우 보상 대상에서 제외될 수
+              있습니다.
+            </p>
+            <p class="warning_phrase">
+              - 이벤트 1회 기준 인당 최대 10번까지 참여가 가능합니다.
+            </p>
+            <p class="warning_phrase">
+              - 가장 정확한 수치로 깃발을 많이 등록해주시는 분들께 추가 보상을
+              드립니다.
+            </p>
+          </div> -->
+
+          <!-- 추가 -->
+          <div class="dashbar"></div>
+
+          <!-- 3rd -->
+          <div class="tab_content">
+            <h5 class="tab_title">개인정보 수집 및 처리 위탁 동의</h5>
+            <p class="tab_title_sub">
+              이벤트 경품 지급을 위해서만 개인정보를 이용하며<br />
+              이벤트 완료 후 1개월 이내에 모든 정보는 파기됩니다.
+            </p>
+            <div class="radio_wrap">
+              <label class="radio_box">
+                <input type="radio" id="CSNT_Y" name="radio" value="Y" />
+                <span class="radio_btn"></span>
+                <span class="radio_txt">네,동의합니다.</span>
+              </label>
+              <label class="radio_box">
+                <input type="radio" id="CSNT_N" name="radio" value="N" />
+                <span class="radio_btn"></span>
+                <span class="radio_txt">동의하지 않습니다.</span>
+              </label>
+            </div>
+            <br />
+            <div class="btn_wrap">
+              <button type="button" id="onSave" onclick="validateInputs()">
+                제출하기
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="section_title_box">
+          <h3 class="section_title">실시간 참여 랭킹</h3>
+          <p id="unique_phone_nums_count"></p>
+        </div>
+        <div class="event_table vertical">
+          <div class="rating_box">
+            <div class="rating_item">
+              <div class="rating_star first">1등</div>
+              <p class="phone_num">kakao***</p>
+              <p class="num_time">10회</p>
+            </div>
+            <div class="rating_item">
+              <div class="rating_star second">2등</div>
+              <p class="phone_num">kakao***</p>
+              <p class="num_time">10회</p>
+            </div>
+            <div class="rating_item">
+              <div class="rating_star third">3등</div>
+              <p class="phone_num">kakao***</p>
+              <p class="num_time">10회</p>
+            </div>
+            <div class="rating_item">
+              <div class="rating_star fourth">4등</div>
+              <p class="phone_num">kakao***</p>
+              <p class="num_time">10회</p>
+            </div>
+            <div class="rating_item">
+              <div class="rating_star fifth">5등</div>
+              <p class="phone_num">kakao***</p>
+              <p class="num_time">10회</p>
+            </div>
+          </div>
+          <div class="rating_warning">
+            <div class="warning_phrase">
+              <p>-&nbsp;</p>
+              <p>
+                랭킹 TOP5에게는 앱 1년 무료 이용권이 지급되며, TOP3에게는 앱 1년
+                무료 이용권과 함께 <span>"미니 골드바" 추가 보상</span>을
+                드립니다.
+              </p>
+            </div>
+
+            <div class="warning_phrase">
+              <p>-&nbsp;</p>
+              <p>참여 횟수가 동일할 경우 선착순으로 보상이 지급됩니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <h3 class="section_title">유의사항</h3>
+        <div class="precautions">
+          <p>-야외골프장 깃발 거리 측정이 가능한 캐디 대상의 이벤트입니다.</p>
+          <p>-해당 경품 이벤트는 만 19세 이상 참여 가능합니다.</p>
+          <p>-하나의 골프장당 최초 1회만 참여가 가능합니다.</p>
+          <p>
+            -이벤트 기간 내에 해당 웹페이지에서 <제출하기> 버튼을 누르셔야
+            신청됩니다.
+          </p>
+          <p>
+            -보상받을 전화번호 정보 불일치, 연락 두절로 인한 재발송은 진행하지
+            않습니다.
+          </p>
+          <p>
+            -정확도가 낮은 측정 결과 또는 비정상적인 입력은 별도의 통보 없이
+            보상 대상에서 제외됩니다.
+          </p>
+          <p>
+            -이벤트 조건이 충족되지 않을 경우 정상 제출이 되어도 보상 지급이
+            불가합니다.
+          </p>
+          <p>
+            -지급되는 보상은 참여해주신 횟수와 정확도에 따라 다르며, 참여 횟수는
+            실시간 랭킹을 참고해주시기를 바랍니다.
+          </p>
+          <p>
+            -보상은 안내된 상품권/상품으로 제공되며, 상황에 따라 경품이 변경
+            지급될 수 있습니다.
+          </p>
+          <p>-이벤트 보상 사진은 연출된 이미지로 실제와 다를 수 있습니다.</p>
+          <p>
+            -기프티콘은 유효기간이 정해진 상품이며 해당 기간 내에 사용하지 않은
+            부분에 대한 책임은 지지 않습니다.
+          </p>
+          <p>
+            -이벤트 당첨 발표는 별도로 진행하지 않으며 당첨자분들에게 개별적으로
+            연락 드립니다.
+          </p>
+          <p>
+            -보상 지급 시점은 이벤트 종료 후 깃발 크기 데이터 확인 후 1개월
+            이내입니다.
+          </p>
+          <p>
+            -수집된 개인정보는 당첨자 선정 및 경품 발송을 위해서만 사용되며,
+            이벤트 종료 후 30일 이내 폐기됩니다.
+          </p>
+          <p>-본 이벤트는 당사 및 제휴사 사정에 따라 변경될 수 있습니다.</p>
+        </div>
+      </div>
+      <!-- 팝업 -->
+      <div id="popupBg" class="popup_bg">
+        <div class="popup_wrap">
+          <div class="popup_box">
+            <div class="popup_txt_box">
+              <p class="popup_txt_cnf"></p>
+              <p class="popup_txt_cnf_sub"></p>
+            </div>
+            <div class="popup_btns_container">
+              <div class="popup_btn_wrap cancel">
+                <button id="popupCancelBtn"></button>
+              </div>
+              <div class="popup_btn_wrap">
+                <button id="popupSubmitBtn"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </body>
+</html>

@@ -173,7 +173,7 @@ function openAlert(
   }
 ) {
   const popupBg = document.getElementById("popupBg");
-  const popupTxtCnf = document.querySelector(".popup_txt_cnf");
+  const popupTxtCnf = document.querySelector(".toast_txt_cnf");
   const popupTxtCnfSub = document.querySelector(".popup_txt_cnf_sub");
   const cancelButton = document.getElementById("popupCancelBtn");
   const submitButton = document.getElementById("popupSubmitBtn");
@@ -206,7 +206,7 @@ function submitAndClose(e) {
 
 function openToast(message, displayDuration) {
   const toastPopup = document.getElementById("toastPopup");
-  const toastTxtCnf = toastPopup.querySelector(".popup_txt_cnf");
+  const toastTxtCnf = toastPopup.querySelector(".toast_txt_cnf");
 
   // 텍스트를 설정합니다.
   toastTxtCnf.innerHTML = message;

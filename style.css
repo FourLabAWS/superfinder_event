@@ -511,6 +511,13 @@ body {
   margin-top: 1.11vw;
 }
 
+.toast_txt_cnf {
+  line-height: 5.548vw;
+  font-size: 4vw;
+  color: #ffffff;
+  text-align: center;
+}
+
 .popup_txt span {
   color: #474747;
 }
@@ -859,6 +866,7 @@ body {
     font-size: 20px;
     margin-top: 8px;
   }
+
   /* .popup_btns_container {
     width: 872px;
   } */

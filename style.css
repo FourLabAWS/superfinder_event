@@ -623,7 +623,8 @@ body {
 }
 
 .searchBtnAlt {
-  margin-top: 12.5vw !important;
+  margin-top: 90px !important;
+  /* margin-top: 12.5vw !important; */
 }
 
 /* 반응형 (폭 720px 이상) */
@@ -860,9 +861,9 @@ body {
     line-height: 22px;
     font-size: 18px;
   }
-  .searchBtnAlt {
+  /* .searchBtnAlt {
     margin-top: 90px !important;
-  }
+  } */
 
   /* 카카오 */
   .placeList_wrap {

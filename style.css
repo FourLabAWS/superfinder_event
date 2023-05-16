@@ -3,7 +3,7 @@ body {
 }
 .wrap {
   background-color: #f4f4f4;
-  padding: 20px 15px 0;
+  padding: 2.778vw 2.778vw 0;
 }
 .section {
   display: flex;
@@ -34,7 +34,7 @@ body {
   color: #868686;
   font-weight: 400;
   text-align: left;
-
+  word-break: break-all;
   display: flex;
 }
 .warning_phrase + .warning_phrase {
@@ -170,10 +170,17 @@ body {
   gap: 1.389vw;
 }
 .input_box.search.abs {
-  width: 61.111vw;
+  width: 59.722vw;
   position: absolute;
   top: 0;
   left: 22.639vw;
+  z-index: 50;
+}
+.input_box.search.abs2 {
+  width: 77.778vw;
+  position: absolute;
+  top: 0;
+  left: 3.639vw;
   z-index: 50;
 }
 
@@ -586,6 +593,7 @@ body {
   overflow: hidden;
   white-space: nowrap;
 }
+
 /* #placesList .item .info {
    padding: 10px 0 10px 55px; 
 } */
@@ -612,6 +620,10 @@ body {
   font-weight: bold;
   cursor: default;
   color: #777;
+}
+
+.searchBtnAlt {
+  margin-top: 10.556vw !important;
 }
 
 /* 반응형 (폭 720px 이상) */
@@ -790,6 +802,13 @@ body {
     width: 355px;
   }
 
+  .input_box.search.abs2 {
+    gap: 10px;
+    left: 87px;
+
+    width: 500px;
+  }
+
   #input_guide {
     margin-top: 10px;
     width: 100%;
@@ -840,6 +859,9 @@ body {
     min-height: 30px;
     line-height: 22px;
     font-size: 18px;
+  }
+  .searchBtnAlt {
+    margin-top: 76px !important;
   }
 
   /* 카카오 */

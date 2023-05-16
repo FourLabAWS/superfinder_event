@@ -20,6 +20,7 @@ function hiddenFalse() {
   $(".phone_num_area").show();
   $("#place-guide").text("참여 가능한 골프장입니다.");
   $("#place-guide").css("color", "blue");
+  $(".search").addClass("abs");
 }
 
 function isNotGolfPlace() {

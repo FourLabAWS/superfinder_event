@@ -12,6 +12,15 @@ function searchPlaces() {
 
   // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
   ps.keywordSearch(keyword, placesSearchCB);
+
+  // place-guide 영역을 동적으로 생성합니다
+  var placeGuideEl = document.getElementById("place-guide");
+  placeGuideEl.innerHTML = ""; // 기존 내용을 초기화합니다
+
+  // 새로운 내용을 생성하고 추가합니다
+  var newContent = document.createElement("p");
+  newContent.textContent = "조회 가능한 정보입니다.";
+  placeGuideEl.appendChild(newContent);
 }
 
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
@@ -47,6 +56,23 @@ function displayPlaces(places) {
   // 검색결과 항목들을 검색결과 목록 Element에 추가합니다
   listEl.appendChild(fragment);
   // menuEl.scrollTop = 0;
+
+  // keyword 입력란의 값이 변경될 때마다 placeList를 지우는 기능을 구현하기 위해 keyword 입력란에 이벤트 리스너를 추가합니다.
+  var keywordInput = document.getElementById("keyword");
+  keywordInput.addEventListener("input", clearPlaceList);
+
+  // placeList를 지우는 함수를 정의합니다.
+  function clearPlaceList() {
+    var listEl = document.getElementById("placesList");
+    removeAllChildNodes(listEl);
+  }
+
+  // 요소의 모든 자식 노드를 제거하는 함수를 정의합니다.
+  function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+    }
+  }
 }
 
 // 검색결과 항목을 Element로 반환하는 함수입니다

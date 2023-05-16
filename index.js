@@ -4,9 +4,7 @@ function hiddenTrue() {
   $(".input_box info").hide();
   $(".tab_content").hide();
   $("#PHONE_NUM").hide();
-  $("#place-guide").text(
-    "참여 완료된 골프장입니다. 다른 골프장을 선택해주세요."
-  );
+  $("#place-guide").text("참여 완료된 골프장입니다. 다른 골프장을 선택해주세요.");
   $(".phone_num_area").hide();
   $(".input_box").removeClass("abs");
   $(".input_box").addClass("abs2");
@@ -166,6 +164,10 @@ function popupClose(e) {
   document.getElementById("popupBg").classList.remove("active");
 }
 
+function popupClose2(e) {
+  document.getElementById("popupBg").classList.remove("active");
+}
+
 function submitAndClose(e) {
   popupClose();
   onSave();
@@ -215,10 +217,8 @@ $(document).ready(function () {
   $("#HZ_LNTH, #VR_LNTH").on("input", function () {
     var hz_ln = parseInt($("#HZ_LNTH").val());
     var vr_ln = parseInt($("#VR_LNTH").val());
-    var hz_valid =
-      !isNaN(hz_ln) && hz_ln >= HZ_LNTH_MIN && hz_ln <= HZ_LNTH_MAX;
-    var vr_valid =
-      !isNaN(vr_ln) && vr_ln >= VR_LNTH_MIN && vr_ln <= VR_LNTH_MAX;
+    var hz_valid = !isNaN(hz_ln) && hz_ln >= HZ_LNTH_MIN && hz_ln <= HZ_LNTH_MAX;
+    var vr_valid = !isNaN(vr_ln) && vr_ln >= VR_LNTH_MIN && vr_ln <= VR_LNTH_MAX;
 
     if (hz_valid && vr_valid) {
       $("button[type='button']").prop("disabled", false);
@@ -365,9 +365,7 @@ $.ajax({
   contentType: "application/json",
   success: function (response) {
     const unique_phone_nums_count = JSON.parse(response.body);
-    $("#unique_phone_nums_count").text(
-      "현재 " + unique_phone_nums_count + "명 참여중"
-    );
+    $("#unique_phone_nums_count").text("현재 " + unique_phone_nums_count + "명 참여중");
   },
   error: function (jqXHR, textStatus, errorThrown) {
     openAlert("서버와 통신 중 오류가 발생하였습니다.");

@@ -220,7 +220,7 @@ $(document).ready(function () {
       $("button[type='button']").prop("disabled", false);
       $("#input_guide").hide();
     } else {
-      $("button[type='button']").prop("disabled", true);
+      openAlert("깃발 크기를 다시 입력해주세요.", "취소", "확인", popupClose, popupClose);
       $("#input_guide").show();
     }
 

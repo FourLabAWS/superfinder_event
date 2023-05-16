@@ -148,15 +148,18 @@ body {
   padding: 2.778vw;
   width: 100%;
   text-align: center;
-  font-size: 2.778vw;
+  font-size: 3.056vw;
   color: #575757;
   background-color: #fcfcfc;
+}
+
+.phone_num_area {
+  flex: 2;
 }
 
 .input_box.search {
   position: relative;
   /* margin-top: 2.222vw; */
-  width: 59.722vw;
   /* background-image: url("./search.png");
   background-repeat: no-repeat;
   background-size: 2.778vw 2.778vw;
@@ -166,6 +169,14 @@ body {
   flex-direction: column;
   gap: 1.389vw;
 }
+.input_box.search.abs {
+  width: 61.111vw;
+  position: absolute;
+  top: 0;
+  left: 22.639vw;
+  z-index: 50;
+}
+
 /* .input_box.search ~ .btn_wrap {
   margin-top: 2.222vw;
   margin-bottom: 4.583vw;
@@ -205,6 +216,9 @@ body {
   margin-top: 11.096vw;
   width: 100%;
   position: relative;
+}
+.noMt {
+  margin-top: 0 !important;
 }
 .tab_row + .tab_row {
   margin-top: 2.778vw;
@@ -387,8 +401,10 @@ body {
   letter-spacing: -0.05rem;
 }
 #place-guide {
-  margin-top: 10px;
-  min-height: 30px;
+  margin-top: 1.389vw;
+  min-height: 4.167vw;
+  line-height: 3.056vw;
+  font-size: 2.5vw;
 }
 #input_guide {
   position: absolute;
@@ -396,8 +412,8 @@ body {
   text-align: center;
   color: #ff8871;
   width: 100%;
-  bottom: -2.358vw;
-  font-size: 1.942vw;
+  bottom: -3.056vw;
+  font-size: 2.222vw;
 }
 /* popup */
 .popup_bg {
@@ -550,10 +566,11 @@ body {
 }
 #placesList .item {
   position: relative;
-  border-bottom: 1px dashed #e0e0e0;
+  border-top: 1px dashed #e0e0e0;
   overflow: hidden;
   cursor: pointer;
   min-height: 5.556vw;
+  line-height: 4.167vw;
   text-align: left;
 
   padding: 0.694vw 0;
@@ -662,7 +679,10 @@ body {
   }
   .input_box {
     padding: 20px;
-    font-size: 20px;
+    font-size: 22px;
+  }
+  .phone_num_area {
+    width: 355px;
   }
   .input_box.search {
     width: 430px;
@@ -690,7 +710,7 @@ body {
     margin-top: 40px !important;
   }
   .tab_row + .tab_row {
-    margin-top: 20px;
+    margin-top: 30px;
   }
   .tab_text {
     min-width: 120px;
@@ -762,15 +782,18 @@ body {
     font-size: 16px;
   }
 
-  .input_box.search {
+  .input_box.search.abs {
     gap: 10px;
+    left: 228px;
+
+    width: 355px;
   }
 
   #input_guide {
     margin-top: 10px;
     width: 100%;
-    bottom: -17px;
-    font-size: 12px;
+    bottom: -22px;
+    font-size: 16px;
   }
 
   /* popup */
@@ -811,6 +834,12 @@ body {
   .popup_btns_container .popup_btn_wrap {
     width: 280px;
   }
+  #place-guide {
+    margin-top: 10px;
+    min-height: 30px;
+    line-height: 22px;
+    font-size: 18px;
+  }
 
   /* 카카오 */
   .placeList_wrap {
@@ -818,6 +847,7 @@ body {
   }
   #placesList .item {
     min-height: 40px;
+    line-height: 30px;
     padding: 5px 0;
   }
 }

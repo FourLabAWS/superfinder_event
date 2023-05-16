@@ -56,27 +56,39 @@
             <div class="tab_text">
               <p>골프장검색</p>
             </div>
-            <div class="input_box search">
-              <input
-                type="text"
-                id="keyword"
-                name="keyword"
-                placeholder="골프장을 검색하세요."
-                size="15"
-              />
-              <input type="hidden" id="PLC_ID" name="PLC_ID" />
-              <input type="hidden" id="PLC_NM" name="PLC_NM" />
-              <input type="hidden" id="USE_YN" name="USE_YN" value="Y" />
-
-              <!-- 검색목록  -->
-              <div class="placeList_wrap">
-                <ul id="placesList"></ul>
+            
+            <div id="searchPlace" class="input_box search abs">
+              <div class="searchList_wrap">
+                <input
+                  type="text"
+                  id="keyword"
+                  name="keyword"
+                  placeholder="골프장을 검색하세요."
+                  size="15"
+                />
+                <input type="hidden" id="PLC_ID" name="PLC_ID" />
+                <input type="hidden" id="PLC_NM" name="PLC_NM" />
+                <input type="hidden" id="USE_YN" name="USE_YN" value="Y" />
+  
+                <!-- 검색목록  -->
+                <div class="placeList_wrap">
+                  <ul id="placesList"></ul>
+                </div>
               </div>
             </div>
+            
             <div class="transparent"></div>
           </div>
 
-          <div class="tab_row">
+          <!-- 조회가능여부 -->
+          <div class="tab_row noMt">
+            <div class="transparent"></div>
+            <div class="tab_text"></div>
+            <div id="place-guide"></div>
+            <div class="transparent"></div>
+          </div>
+
+          <div class="tab_row noMt">
             <div class="transparent"></div>
             <div class="tab_text"></div>
             <div class="btn_wrap">
@@ -85,13 +97,6 @@
             <div class="transparent"></div>
           </div>
 
-          <!-- 조회가능여부 -->
-          <div class="tab_row">
-            <div class="transparent"></div>
-            <div class="tab_text"></div>
-            <div id="place-guide"></div>
-            <div class="transparent"></div>
-          </div>
 
           <div class="tab_row">
             <div class="transparent"></div>
@@ -102,12 +107,12 @@
                 <p>-&nbsp;</p>
                 <p>한 개의 골프장당 최대 3명까지 참여가 가능합니다.</p>
               </div>
-              <div class="warning_phrase">
+              <div class="warning_phrase noMt">
                 <p>-&nbsp;</p>
                 <p>'참여불가'상태의 골프장은 참여하셔도 보상이 불가합니다.</p>
               </div>
             </div>
-            <div class="transparent"></div>
+            <!-- <div class="transparent"></div> -->
           </div>
 
           <!-- 2nd -->
@@ -144,17 +149,17 @@
               <p>전화번호</p>
             </div>
             <div class="phone_num_area">
-            <div class="input_box info">
-              <input type="hidden" id="USER_ID" value="USER_ID" />
-              <input
+              <div class="input_box info " style="width: inherit !important;">
+                <input type="hidden" id="USER_ID" value="USER_ID" />
+                <input
                 type="text"
                 id="PHONE_NUM"
                 name="PHONE_NUM"
                 placeholder="'-'없이 숫자만 입력해주세요."
                 maxlength="11"
               />
+              </div>
             </div>
-          </div>
             <div class="transparent"></div>
           </div>
           <!-- 깃발크기 입력 설명 
@@ -241,7 +246,7 @@
               <p>-&nbsp;</p>
               <p>
                 랭킹 TOP5에게는 앱 1년 무료 이용권이 지급되며, TOP3에게는 앱 1년
-                무료 이용권과 함께 <span>"미니 골드바" 추가 보상</span>을
+                무료 이용권과 함께<br/> <span>"미니 골드바" 추가 보상</span>을
                 드립니다.
               </p>
             </div>

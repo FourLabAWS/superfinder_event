@@ -19,7 +19,7 @@ function searchPlaces() {
 
   // 새로운 내용을 생성하고 추가합니다
   var newContent = document.createElement("p");
-  newContent.textContent = "조회 가능한 정보입니다.";
+  newContent.textContent = "";
   placeGuideEl.appendChild(newContent);
 }
 

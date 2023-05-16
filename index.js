@@ -5,8 +5,10 @@ function hiddenTrue() {
   $(".tab_content").hide();
   $("#PHONE_NUM").hide();
   $("#place-guide").text("참여 완료된 골프장입니다. 다른 골프장을 선택해주세요.");
-  $("#place-guide").css("color", "#FF8871");
   $(".phone_num_area").hide();
+  $(".input_box").removeClass("abs");
+  $(".input_box").addClass("abs2");
+  $("#searchBtn").removeClass("noMt").addClass("searchBtnAlt");
 }
 
 function hiddenFalse() {
@@ -17,8 +19,9 @@ function hiddenFalse() {
   $("#PHONE_NUM").show();
   $(".phone_num_area").show();
   $("#place-guide").text("참여 가능한 골프장입니다.");
-  $("#place-guide").css("color", "#FF8871");
+  $(".search").removeClass("abs2");
   $(".search").addClass("abs");
+  $("#searchBtn").removeClass("searchBtnAlt").addClass("noMt");
 }
 
 function isNotGolfPlace() {
@@ -29,9 +32,9 @@ function isNotGolfPlace() {
   $("#PHONE_NUM").hide();
   $(".phone_num_area").hide();
   $("#place-guide").text("골프장이 아닙니다.");
-  $("#place-guide").css("color", "black");
-
   $(".input_box").removeClass("abs");
+  $(".input_box").addClass("abs2");
+  $("#searchBtn").removeClass("noMt").addClass("searchBtnAlt");
 }
 
 function validateInputs() {

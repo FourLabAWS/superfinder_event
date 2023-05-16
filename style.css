@@ -222,6 +222,7 @@ body {
   gap: 2.361vw;
   margin-top: 11.096vw;
   width: 100%;
+  min-height: 9.722vw;
   position: relative;
 }
 .noMt {
@@ -639,8 +640,8 @@ body {
 }
 
 .searchBtnAlt {
-  margin-top: 90px !important;
-  /* margin-top: 12.5vw !important; */
+  /* margin-top: 90px !important; */
+  margin-top: 12.5vw !important;
 }
 
 /* 반응형 (폭 720px 이상) */
@@ -733,6 +734,7 @@ body {
   .tab_row {
     gap: 20px;
     margin-top: 80px;
+    min-height: 70px;
 
     position: relative;
   }
@@ -877,9 +879,9 @@ body {
     line-height: 22px;
     font-size: 18px;
   }
-  /* .searchBtnAlt {
+  .searchBtnAlt {
     margin-top: 90px !important;
-  } */
+  }
 
   /* 카카오 */
   .placeList_wrap {

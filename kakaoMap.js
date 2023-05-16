@@ -6,7 +6,7 @@ function searchPlaces() {
   var keyword = document.getElementById("keyword").value;
 
   if (!keyword.replace(/^\s+|\s+$/g, "")) {
-    openAlert("골프장을 입력해주세요", "취소", "확인", undefined, popupClose);
+    openToast("필수 정보를 모두 입력해주세요", 3000);
     return false;
   }
 
@@ -30,10 +30,10 @@ function placesSearchCB(data, status) {
     // 검색 목록을 표출합니다
     displayPlaces(data);
   } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-    openAlert("골프장을 입력해주세요", "취소", "확인", undefined, popupClose);
+    openToast("필수 정보를 모두 입력해주세요", 3000);
     return false;
   } else if (status === kakao.maps.services.Status.ERROR) {
-    openAlert("골프장을 입력해주세요", "취소", "확인", undefined, popupClose);
+    openToast("필수 정보를 모두 입력해주세요", 3000);
     return false;
   }
 }

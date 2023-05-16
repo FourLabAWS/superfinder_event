@@ -4,9 +4,7 @@ function hiddenTrue() {
   $(".input_box info").hide();
   $(".tab_content").hide();
   $("#PHONE_NUM").hide();
-  $("#place-guide").text(
-    "참여 완료된 골프장입니다. 다른 골프장을 선택해주세요."
-  );
+  $("#place-guide").text("참여 완료된 골프장입니다. 다른 골프장을 선택해주세요.");
   $(".phone_num_area").hide();
   $(".input_box").removeClass("abs");
   $(".input_box").addClass("abs2");
@@ -39,13 +37,23 @@ function isNotGolfPlace() {
   $("#searchBtn").removeClass("noMt").addClass("searchBtnAlt");
 }
 
+const HZ_LNTH_MIN = 38;
+const HZ_LNTH_MAX = 60;
+const VR_LNTH_MIN = 27;
+const VR_LNTH_MAX = 45;
+
 function validateInputs() {
   const inputs = [
-    { id: "#keyword", alertMessage: "골프장을 입력해주세요" },
-    { id: "#HZ_LNTH", alertMessage: "가로 길이를 입력해주세요" },
-    { id: "#VR_LNTH", alertMessage: "세로 길이를 입력해주세요" },
-    { id: "#PHONE_NUM", alertMessage: "전화번호를 입력해주세요" },
-    { id: "input[name='radio']", alertMessage: "동의 여부를 선택해주세요" },
+    // { id: "#keyword", alertMessage: "골프장을 입력해주세요" },
+    // { id: "#HZ_LNTH", alertMessage: "가로 길이를 입력해주세요" },
+    // { id: "#VR_LNTH", alertMessage: "세로 길이를 입력해주세요" },
+    // { id: "#PHONE_NUM", alertMessage: "전화번호를 입력해주세요" },
+    // { id: "input[name='radio']", alertMessage: "동의 여부를 선택해주세요" },
+    { id: "#keyword", alertMessage: "필수 정보를 모두 입력해주세요" },
+    { id: "#HZ_LNTH", alertMessage: "깃발 크기를 다시 입력해주세요" },
+    { id: "#VR_LNTH", alertMessage: "깃발 크기를 다시 입력해주세요" },
+    { id: "#PHONE_NUM", alertMessage: "필수 정보를 모두 입력해주세요" },
+    { id: "input[name='radio']", alertMessage: "필수 정보를 모두 입력해주세요" },
   ];
 
   for (let i = 0; i < inputs.length; i++) {
@@ -56,14 +64,38 @@ function validateInputs() {
       value = $(inputs[i].id).val();
     }
     if (!value) {
-      openAlert(inputs[i].alertMessage, "취소", "확인", popupClose, popupClose);
+      openToast(inputs[i].alertMessage, 3000);
       $(inputs[i].id).focus();
       $("input[type='button']").prop("disabled", true);
       return;
     }
   }
+
+  const hz_ln = parseInt($("#HZ_LNTH").val());
+  const vr_ln = parseInt($("#VR_LNTH").val());
+  const hz_valid = !isNaN(hz_ln) && hz_ln >= HZ_LNTH_MIN && hz_ln <= HZ_LNTH_MAX;
+  const vr_valid = !isNaN(vr_ln) && vr_ln >= VR_LNTH_MIN && vr_ln <= VR_LNTH_MAX;
+
+  if (!(hz_valid && vr_valid)) {
+    openToast("깃발 크기를 다시 입력해주세요.", 3000);
+    //$("button[type='button']").prop("disabled", true);
+    var guideText =
+      "최소값: " +
+      HZ_LNTH_MIN +
+      " x " +
+      VR_LNTH_MIN +
+      ", 최대값: " +
+      HZ_LNTH_MAX +
+      " x " +
+      VR_LNTH_MAX;
+    $("#input_guide").text(guideText);
+
+    return;
+  }
+
   openAlert(
-    "해당 정보로 제출하시겠습니까?<br>하나의 골프장당 한번만 참여 가능하며<br>깃발 크기가 부정확한 경우 보상 대상에서 제외됩니다."
+    "해당 정보로 제출하시겠습니까?",
+    "하나의 골프장당 한번만 참여 가능하며<br>깃발 크기가 부정확한 경우 보상 대상에서 제외됩니다."
   );
 }
 
@@ -116,7 +148,7 @@ function handlePlaceSelect(places) {
       }
     },
     error: function (jqXHR, textStatus, errorThrown) {
-      openAlert("서버와 통신 중 오류가 발생하였습니다.");
+      openToast("서버와 통신 중 오류가 발생하였습니다.", 3000);
     },
   });
 
@@ -129,7 +161,8 @@ function handlePlaceSelect(places) {
 }
 
 function openAlert(
-  message,
+  message1,
+  message2,
   cancelText = "취소",
   submitText = "확인",
   cancelEvent = function (e) {
@@ -145,8 +178,8 @@ function openAlert(
   const cancelButton = document.getElementById("popupCancelBtn");
   const submitButton = document.getElementById("popupSubmitBtn");
 
-  popupTxtCnf.textContent = "알림";
-  popupTxtCnfSub.innerHTML = message;
+  popupTxtCnf.textContent = message1;
+  popupTxtCnfSub.innerHTML = message2;
 
   cancelButton.textContent = cancelText;
   cancelButton.onclick = cancelEvent;
@@ -169,6 +202,22 @@ function popupClose(e) {
 function submitAndClose(e) {
   popupClose();
   onSave();
+}
+
+function openToast(message, displayDuration) {
+  const toastPopup = document.getElementById("toastPopup");
+  const toastTxtCnf = toastPopup.querySelector(".popup_txt_cnf");
+
+  // 텍스트를 설정합니다.
+  toastTxtCnf.innerHTML = message;
+
+  // 팝업을 열어줍니다.
+  toastPopup.classList.add("active");
+
+  // displayDuration 만큼의 시간이 지난 후 팝업을 닫아줍니다.
+  setTimeout(() => {
+    toastPopup.classList.remove("active");
+  }, displayDuration);
 }
 
 $(document).ready(function () {
@@ -205,26 +254,20 @@ $(document).ready(function () {
     }
   });
 
-  const HZ_LNTH_MIN = 38;
-  const HZ_LNTH_MAX = 60;
-  const VR_LNTH_MIN = 27;
-  const VR_LNTH_MAX = 45;
-
-  $("#input_guide").hide();
+  //$("#input_guide").hide();
 
   $("#HZ_LNTH, #VR_LNTH").on("input", function () {
     var hz_ln = parseInt($("#HZ_LNTH").val());
     var vr_ln = parseInt($("#VR_LNTH").val());
-    var hz_valid =
-      !isNaN(hz_ln) && hz_ln >= HZ_LNTH_MIN && hz_ln <= HZ_LNTH_MAX;
-    var vr_valid =
-      !isNaN(vr_ln) && vr_ln >= VR_LNTH_MIN && vr_ln <= VR_LNTH_MAX;
+    var hz_valid = !isNaN(hz_ln) && hz_ln >= HZ_LNTH_MIN && hz_ln <= HZ_LNTH_MAX;
+    var vr_valid = !isNaN(vr_ln) && vr_ln >= VR_LNTH_MIN && vr_ln <= VR_LNTH_MAX;
 
     if (hz_valid && vr_valid) {
       $("button[type='button']").prop("disabled", false);
       $("#input_guide").hide();
     } else {
-      $("button[type='button']").prop("disabled", true);
+      openToast("깃발 크기를 다시 입력해주세요.", 3000);
+      //$("button[type='button']").prop("disabled", true);
       $("#input_guide").show();
     }
 
@@ -266,28 +309,13 @@ function onSave() {
     contentType: "application/json",
     success: function (data) {
       if (data.statusCode === 409) {
-        openAlert(
-          "해당 골프장에 깃발을 이미 등록했습니다.",
-          "취소",
-          "확인",
-          undefined,
-          popupClose
-        );
+        openToast("해당 골프장에 깃발을 이미 등록했습니다.", 3000);
       } else if (data.statusCode === 400) {
-        openAlert(
-          "해당 골프장은 깃발이 모두 등록되었습니다.",
-          "취소",
-          "확인",
-          undefined,
-          popupClose
-        );
+        openToast("해당 골프장은 깃발이 모두 등록되었습니다.", 3000);
       } else {
-        openAlert(
+        openToast(
           "이벤트 참여 완료!<br>커피 기프티콘보다 더 큰 보상을 원하시면<br>이벤트를 최대 10회까지 참여해주세요",
-          "취소",
-          "확인",
-          undefined,
-          popupClose
+          3000
         );
         setTimeout(function () {
           location.reload();
@@ -295,13 +323,7 @@ function onSave() {
       }
     },
     error: function (jqXHR, textStatus, errorThrown) {
-      openAlert(
-        "서버와 통신 중 오류가 발생하였습니다.",
-        "취소",
-        "확인",
-        undefined,
-        popupClose
-      );
+      openToast("서버와 통신 중 오류가 발생하였습니다.", 3000);
     },
   });
 }
@@ -349,7 +371,7 @@ $.ajax({
     }
   },
   error: function (jqXHR, textStatus, errorThrown) {
-    openAlert("서버와 통신 중 오류가 발생하였습니다.");
+    openToast("서버와 통신 중 오류가 발생하였습니다.", 3000);
   },
 });
 
@@ -365,11 +387,9 @@ $.ajax({
   contentType: "application/json",
   success: function (response) {
     const unique_phone_nums_count = JSON.parse(response.body);
-    $("#unique_phone_nums_count").text(
-      "현재 " + unique_phone_nums_count + "명 참여중"
-    );
+    $("#unique_phone_nums_count").text("현재 " + unique_phone_nums_count + "명 참여중");
   },
   error: function (jqXHR, textStatus, errorThrown) {
-    openAlert("서버와 통신 중 오류가 발생하였습니다.");
+    openToast("서버와 통신 중 오류가 발생하였습니다.", 3000);
   },
 });

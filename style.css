@@ -408,7 +408,7 @@ body {
   letter-spacing: -0.05rem;
 }
 #place-guide {
-  margin-top: 1.389vw;
+  margin-top: 2.222vw;
   min-height: 4.167vw;
   line-height: 3.056vw;
   font-size: 2.5vw;
@@ -855,7 +855,7 @@ body {
     width: 280px;
   }
   #place-guide {
-    margin-top: 10px;
+    margin-top: 16px;
     min-height: 30px;
     line-height: 22px;
     font-size: 18px;

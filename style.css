@@ -177,7 +177,7 @@ body {
   z-index: 50;
 }
 .input_box.search.abs2 {
-  width: 25.111vw;
+  width: 77.778vw;
   position: absolute;
   top: 0;
   left: 3.639vw;
@@ -623,7 +623,7 @@ body {
 }
 
 .searchBtnAlt {
-  margin-top: 76px !important;
+  margin-top: 10.556vw !important;
 }
 
 /* 반응형 (폭 720px 이상) */
@@ -859,6 +859,9 @@ body {
     min-height: 30px;
     line-height: 22px;
     font-size: 18px;
+  }
+  .searchBtnAlt {
+    margin-top: 76px !important;
   }
 
   /* 카카오 */

@@ -417,7 +417,7 @@ body {
 #input_guide {
   position: absolute;
   margin-top: none;
-  text-align: center;
+  text-align: left;
   color: #ff8871;
   width: 100%;
   bottom: -3.056vw;
@@ -623,7 +623,7 @@ body {
 }
 
 .searchBtnAlt {
-  margin-top: 10.556vw !important;
+  margin-top: 12.5vw !important;
 }
 
 /* 반응형 (폭 720px 이상) */
@@ -861,7 +861,7 @@ body {
     font-size: 18px;
   }
   .searchBtnAlt {
-    margin-top: 76px !important;
+    margin-top: 90px !important;
   }
 
   /* 카카오 */

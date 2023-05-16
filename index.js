@@ -8,7 +8,7 @@ function hiddenTrue() {
   $("#place-guide").text(
     "참여 완료된 골프장입니다. 다른 골프장을 선택해주세요."
   );
-  $("#place-guide").css("color", "red");
+  // $("#place-guide").css("color", "red");
 }
 
 function hiddenFalse() {
@@ -19,7 +19,7 @@ function hiddenFalse() {
   $("#PHONE_NUM").show();
   $(".phone_num_area").show();
   $("#place-guide").text("참여 가능한 골프장입니다.");
-  $("#place-guide").css("color", "blue");
+  // $("#place-guide").css("color", "blue");
   $(".search").addClass("abs");
 }
 
@@ -31,7 +31,7 @@ function isNotGolfPlace() {
   $("#PHONE_NUM").hide();
   $(".phone_num_area").hide();
   $("#place-guide").text("골프장이 아닙니다.");
-  $("#place-guide").css("color", "black");
+  // $("#place-guide").css("color", "black");
 
   $(".input_box").removeClass("abs");
 }

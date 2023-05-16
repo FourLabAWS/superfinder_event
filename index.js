@@ -164,10 +164,6 @@ function popupClose(e) {
   document.getElementById("popupBg").classList.remove("active");
 }
 
-function popupClose2(e) {
-  document.getElementById("popupBg").classList.remove("active");
-}
-
 function submitAndClose(e) {
   popupClose();
   onSave();

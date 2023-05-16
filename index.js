@@ -38,9 +38,9 @@ function isNotGolfPlace() {
 }
 
 const HZ_LNTH_MIN = 38;
-const HZ_LNTH_MAX = 60;
+const HZ_LNTH_MAX = 75;
 const VR_LNTH_MIN = 27;
-const VR_LNTH_MAX = 45;
+const VR_LNTH_MAX = 55;
 
 function validateInputs() {
   const inputs = [
@@ -50,8 +50,8 @@ function validateInputs() {
     // { id: "#PHONE_NUM", alertMessage: "전화번호를 입력해주세요" },
     // { id: "input[name='radio']", alertMessage: "동의 여부를 선택해주세요" },
     { id: "#keyword", alertMessage: "필수 정보를 모두 입력해주세요" },
-    { id: "#HZ_LNTH", alertMessage: "깃발 크기를 다시 입력해주세요" },
-    { id: "#VR_LNTH", alertMessage: "깃발 크기를 다시 입력해주세요" },
+    { id: "#HZ_LNTH", alertMessage: "가로 크기를 다시 입력해주세요" },
+    { id: "#VR_LNTH", alertMessage: "세로 크기를 다시 입력해주세요" },
     { id: "#PHONE_NUM", alertMessage: "필수 정보를 모두 입력해주세요" },
     { id: "input[name='radio']", alertMessage: "필수 정보를 모두 입력해주세요" },
   ];
@@ -266,7 +266,7 @@ $(document).ready(function () {
       $("button[type='button']").prop("disabled", false);
       $("#input_guide").hide();
     } else {
-      openToast("깃발 크기를 다시 입력해주세요.", 3000);
+      //openToast("깃발 크기를 다시 입력해주세요.", 3000);
       //$("button[type='button']").prop("disabled", true);
       $("#input_guide").show();
     }

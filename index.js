@@ -337,55 +337,53 @@ function onSave() {
   });
 }
 
-window.onload = function () {
-  $.ajax({
-    url: "https://ji40ssrbe6.execute-api.ap-northeast-2.amazonaws.com/v1/FlagEvntRank",
-    type: "GET",
-    contentType: "application/json",
-    cache: false,
-    success: function (response) {
-      const data = JSON.parse(response.body);
-      let rankHtml = "";
-      if (data.length === 0) {
-        rankHtml = "<br>".repeat(13);
-      } else {
-        for (let index = 0; index < 5; index++) {
-          let item = data[index];
-          if (!item) continue;
+$.ajax({
+  url: "https://ji40ssrbe6.execute-api.ap-northeast-2.amazonaws.com/v1/FlagEvntRank",
+  type: "GET",
+  contentType: "application/json",
+  cache: false,
+  success: function (response) {
+    const data = JSON.parse(response.body);
+    let rankHtml = "";
+    if (data.length === 0) {
+      rankHtml = "<br>".repeat(13);
+    } else {
+      for (let index = 0; index < 5; index++) {
+        let item = data[index];
+        if (!item) continue;
 
-          const rankClass =
-            index === 0
-              ? "first"
-              : index === 1
-              ? "second"
-              : index === 2
-              ? "third"
-              : index === 3
-              ? "fourth"
-              : "fifth";
-          let phoneNumber = item[0];
-          let times = item[1];
+        const rankClass =
+          index === 0
+            ? "first"
+            : index === 1
+            ? "second"
+            : index === 2
+            ? "third"
+            : index === 3
+            ? "fourth"
+            : "fifth";
+        let phoneNumber = item[0];
+        let times = item[1];
 
-          let lastFourDigits = phoneNumber.slice(-4);
-          phoneNumber = lastFourDigits;
+        let lastFourDigits = phoneNumber.slice(-4);
+        phoneNumber = lastFourDigits;
 
-          const rankElement = `
-            <div class="rating_item">
-              <div class="rating_star ${rankClass}">${index + 1}등</div>
-              <p class="phone_num">${phoneNumber}</p>
-              <p class="num_time">${times}회</p>
-            </div>
-          `;
-          rankHtml += rankElement;
-        }
+        const rankElement = `
+          <div class="rating_item">
+            <div class="rating_star ${rankClass}">${index + 1}등</div>
+            <p class="phone_num">${phoneNumber}</p>
+            <p class="num_time">${times}회</p>
+          </div>
+        `;
+        rankHtml += rankElement;
       }
-      $(".rating_box").html(rankHtml);
-    },
-    error: function (jqXHR, textStatus, errorThrown) {
-      openToast("서버와 통신 중 오류가 발생하였습니다.", 3000);
-    },
-  });
-};
+    }
+    $(".rating_box").html(rankHtml);
+  },
+  error: function (jqXHR, textStatus, errorThrown) {
+    openToast("서버와 통신 중 오류가 발생하였습니다.", 3000);
+  },
+});
 
 function phoneNumCnt() {
   window.onload = function () {

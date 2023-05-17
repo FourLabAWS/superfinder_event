@@ -332,6 +332,7 @@ $.ajax({
   url: "https://ji40ssrbe6.execute-api.ap-northeast-2.amazonaws.com/v1/FlagEvntRank",
   type: "GET",
   contentType: "application/json",
+  cache: false,
   success: function (response) {
     const data = JSON.parse(response.body);
     if (data.length === 0) {

@@ -425,7 +425,11 @@ body {
   font-size: 2.222vw;
 }
 /* layer popup */
-.popup_bg {
+.popup_bg.active {
+  display: block;
+}
+/* toast popup */
+.toast_txt_cnf.popup_bg {
   display: none;
   position: fixed;
   top: 0;
@@ -435,10 +439,6 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 99;
 }
-.popup_bg.active {
-  display: block;
-}
-/* toast popup */
 .toast_popup {
   position: fixed;
   bottom: 20px;
@@ -468,7 +468,7 @@ body {
   margin: 0 auto;
   border: 2px solid #ff7960;
   border-radius: 50px;
-  width: 97.222vw;
+  width: 94.4444vw;
   height: 44.444vw;
   background: #ff8871;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
@@ -482,7 +482,7 @@ body {
   gap: 3.75vw;
   border: 2px dashed #ffffff;
   border-radius: 50px;
-  width: 95.833vw;
+  width: 93.056vw;
   height: 43.056vw;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05));
 }
@@ -505,7 +505,7 @@ body {
 
 .popup_txt_cnf_sub {
   line-height: 3.329vw;
-  font-size: 2.778vw;
+  font-size: 3.3333vw;
   color: #ffffff;
   text-align: center;
   margin-top: 1.11vw;
@@ -513,9 +513,10 @@ body {
 
 .toast_txt_cnf {
   line-height: 5.548vw;
-  font-size: 2vw;
+  font-size: 3.333vw;
   color: #ffffff;
   text-align: center;
+  word-break: keep-all;
 }
 
 .popup_txt span {
@@ -862,9 +863,14 @@ body {
     font-size: 32px;
   }
   .popup_txt_cnf_sub {
-    line-height: 24px;
-    font-size: 20px;
+    line-height: 28px;
+    font-size: 24px;
     margin-top: 8px;
+  }
+
+  .toast_txt_cnf {
+    line-height: 28px;
+    font-size: 24px;
   }
 
   /* .popup_btns_container {

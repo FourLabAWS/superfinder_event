@@ -335,10 +335,10 @@ $.ajax({
   cache: false,
   success: function (response) {
     const data = JSON.parse(response.body);
+    let rankHtml = "";
     if (data.length === 0) {
-      $(".rating_box").html("<br>".repeat(13));
+      rankHtml = "<br>".repeat(13);
     } else {
-      let rankHtml = "";
       for (let index = 0; index < 5; index++) {
         let item = data[index];
         if (!item) continue;
@@ -368,8 +368,8 @@ $.ajax({
         `;
         rankHtml += rankElement;
       }
-      $(".rating_box").html(rankHtml);
     }
+    $(".rating_box").html(rankHtml);
   },
   error: function (jqXHR, textStatus, errorThrown) {
     openToast("서버와 통신 중 오류가 발생하였습니다.", 3000);

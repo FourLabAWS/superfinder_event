@@ -16,6 +16,7 @@
       type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=26164c9c40976b16d2e8f74daaccb7b4&libraries=services"
     ></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_APP_KEY"></script>
     <script src="./kakaoMap.js?v=1.2"></script>
   </head>
   <body>
@@ -96,6 +97,8 @@
             <div class="btn_wrap">
               <button id="search-button" onclick="searchPlaces()">조회</button>
             </div>
+              <input type="hidden" id="plc_lat" name="plc_lat">
+              <input type="hidden" id="plc_lng" name="plc_lng">
             <div class="transparent"></div>
           </div>
 

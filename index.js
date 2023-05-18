@@ -298,6 +298,8 @@ function onSave() {
   const params = {
     PLC_ID: $("#PLC_ID").val(),
     PLC_NM: $("#PLC_NM").val(),
+    PLC_LAT: $("#plc_lat").val(),
+    PLC_LNG: $("#plc_lng").val(),
     HZ_LNTH: $("#HZ_LNTH").val(),
     VR_LNTH: $("#VR_LNTH").val(),
     PHONE_NUM: $("#PHONE_NUM").val(),

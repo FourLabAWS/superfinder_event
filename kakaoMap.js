@@ -29,6 +29,15 @@ function placesSearchCB(data, status) {
     // 정상적으로 검색이 완료됐으면
     // 검색 목록을 표출합니다
     displayPlaces(data);
+
+    // 첫번째 장소의 위도, 경도를 가져옵니다.
+    var firstPlace = data[0];
+    var lat = firstPlace.y;
+    var lng = firstPlace.x;
+
+    // 해당 값을 각각의 input 태그에 설정합니다.
+    document.getElementById("plc_lat").value = lat;
+    document.getElementById("plc_lng").value = lng;
   } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
     openToast("필수 정보를 모두 입력해주세요", 3000);
     return false;

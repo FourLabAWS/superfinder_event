@@ -402,7 +402,7 @@ $("#shareBtn").click(function () {
       .catch(function (error) {
         console.log("공유에 실패했습니다.", error);
       });
-  } else if (navigator.userAgent.indexOf("KAKAO") > -1) {
+  } else if (navigator.userAgent.indexOf("KAKAOTALK") > -1) {
     const link = "https://superfinder-event.vercel.app/";
     prompt("아래 링크를 복사해주세요:", link);
   } else {

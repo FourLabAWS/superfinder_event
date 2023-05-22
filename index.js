@@ -395,9 +395,29 @@ $.ajax({
   contentType: "application/json",
   success: function (response) {
     const unique_phone_nums_count = JSON.parse(response.body);
-    $("#unique_phone_nums_count").text("현재 " + unique_phone_nums_count + "명 참여중");
+    //$("#unique_phone_nums_count").text("현재 " + unique_phone_nums_count + "명 참여중");
   },
   error: function (jqXHR, textStatus, errorThrown) {
     openToast("서버와 통신 중 오류가 발생하였습니다.", 3000);
   },
+});
+
+$(document).ready(function () {
+  $("#shareBtn").click(function () {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "이벤트 공유하기",
+          url: "https://superfinder-event.vercel.app/",
+        })
+        .then(function () {
+          console.log("공유에 성공했습니다.");
+        })
+        .catch(function (error) {
+          console.log("공유에 실패했습니다.", error);
+        });
+    } else {
+      alert("이 브라우저에서는 공유가 불가합니다.");
+    }
+  });
 });

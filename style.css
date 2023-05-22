@@ -19,6 +19,10 @@ body {
   color: #5f5f5f;
   font-weight: 900;
 }
+.section.center {
+  justify-content: center;
+  align-items: center;
+}
 .prize {
   margin-bottom: 2.778vw;
   height: 36.944vw;
@@ -44,7 +48,12 @@ body {
 .warning_phrase p span {
   word-break: keep-all;
 }
-
+.warning_phrase.center {
+  justify-content: center;
+}
+.warning_phrase.center p {
+  text-align: center;
+}
 .event_table {
   display: flex;
   border: 2px solid #dcdcdc;
@@ -199,6 +208,13 @@ body {
   width: 59.722vw;
   height: 9.306vw;
   background-color: #ffe36c;
+}
+.btn_wrap.redBtn {
+  border: 2px solid #ff7960;
+  background-color: #ff8871;
+}
+.btn_wrap.redBtn button {
+  color: #fff;
 }
 .btn_wrap button {
   border: none;
@@ -656,6 +672,10 @@ body {
   margin-top: 12.5vw !important;
 }
 
+.evtShare {
+  margin: -1.389vw 0 5.278vw;
+}
+
 /* 반응형 (폭 720px 이상) */
 @media screen and (min-width: 721px) {
   body {
@@ -894,6 +914,10 @@ body {
   }
   .searchBtnAlt {
     margin-top: 90px !important;
+  }
+
+  .evtShare {
+    margin: -10px 0 38px;
   }
 
   /* 카카오 */

@@ -672,6 +672,10 @@ body {
   margin-top: 12.5vw !important;
 }
 
+.evtShare {
+  margin: -1.389vw 0 5.278vw;
+}
+
 /* 반응형 (폭 720px 이상) */
 @media screen and (min-width: 721px) {
   body {
@@ -910,6 +914,10 @@ body {
   }
   .searchBtnAlt {
     margin-top: 90px !important;
+  }
+
+  .evtShare {
+    margin: -10px 0 38px;
   }
 
   /* 카카오 */

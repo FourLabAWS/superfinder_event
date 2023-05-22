@@ -389,32 +389,23 @@ function phoneNumCnt() {
   };
 }
 
-$(document).ready(function () {
-  $("#shareBtn").click(function () {
-    if (navigator.share) {
-      navigator
-        .share({
-          title: "이벤트 공유하기",
-          url: "https://superfinder-event.vercel.app/",
-        })
-        .then(function () {
-          console.log("공유에 성공했습니다.");
-        })
-        .catch(function (error) {
-          console.log("공유에 실패했습니다.", error);
-        });
-    } else {
-      // Web Share API를 지원하지 않는 브라우저
-      // 클립보드에 링크 복사
-      const link = "https://superfinder-event.vercel.app/";
-      navigator.clipboard
-        .writeText(link)
-        .then(function () {
-          alert("링크가 복사되었습니다. 복사된 링크를 붙여넣어 공유해주세요.");
-        })
-        .catch(function (error) {
-          console.log("링크 복사에 실패했습니다.", error);
-        });
-    }
-  });
+$("#shareBtn").click(function () {
+  if (navigator.share) {
+    navigator
+      .share({
+        title: "이벤트 공유하기",
+        url: "https://superfinder-event.vercel.app/",
+      })
+      .then(function () {
+        console.log("공유에 성공했습니다.");
+      })
+      .catch(function (error) {
+        console.log("공유에 실패했습니다.", error);
+      });
+  } else if (navigator.userAgent.indexOf("KAKAO") > -1) {
+    const link = "https://superfinder-event.vercel.app/";
+    prompt("아래 링크를 복사해주세요:", link);
+  } else {
+    alert("이 브라우저에서는 공유가 불가합니다.");
+  }
 });

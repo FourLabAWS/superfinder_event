@@ -403,18 +403,18 @@ $(document).ready(function () {
         .catch(function (error) {
           console.log("공유에 실패했습니다.", error);
         });
-    } else {
-      // Web Share API를 지원하지 않는 브라우저
-      // 클립보드에 링크 복사
+    } else if (navigator.userAgent.indexOf("KAKAOTALK") > -1) {
+      // 카카오톡 브라우저
       const link = "https://superfinder-event.vercel.app/";
-      navigator.clipboard
-        .writeText(link)
-        .then(function () {
-          alert("링크가 복사되었습니다. 복사된 링크를 붙여넣어 공유해주세요.");
-        })
-        .catch(function (error) {
-          console.log("링크 복사에 실패했습니다.", error);
-        });
+      const input = document.createElement("input");
+      input.setAttribute("value", link);
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand("copy");
+      document.body.removeChild(input);
+      alert("링크가 복사되었습니다. 복사된 링크를 붙여넣어 공유해주세요.");
+    } else {
+      alert("이 브라우저에서는 공유가 불가합니다.");
     }
   });
 });

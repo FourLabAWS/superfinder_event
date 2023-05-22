@@ -40,6 +40,11 @@ body {
 .warning_phrase + .warning_phrase {
   margin-top: 0.972vw;
 }
+.warning_phrase p,
+.warning_phrase p span {
+  word-break: keep-all;
+}
+
 .event_table {
   display: flex;
   border: 2px solid #dcdcdc;

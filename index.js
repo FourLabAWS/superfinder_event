@@ -389,41 +389,32 @@ function phoneNumCnt() {
   };
 }
 
-$.ajax({
-  url: "https://ji40ssrbe6.execute-api.ap-northeast-2.amazonaws.com/v1/FlagEvntCnt",
-  type: "GET",
-  contentType: "application/json",
-  success: function (response) {
-    const unique_phone_nums_count = JSON.parse(response.body);
-    //$("#unique_phone_nums_count").text("현재 " + unique_phone_nums_count + "명 참여중");
-  },
-  error: function (jqXHR, textStatus, errorThrown) {
-    openToast("서버와 통신 중 오류가 발생하였습니다.", 3000);
-  },
-});
-
-$("#shareBtn").click(function () {
-  if (navigator.share) {
-    navigator
-      .share({
-        title: "이벤트 공유하기",
-        url: "https://superfinder-event.vercel.app/",
-      })
-      .then(function () {
-        console.log("공유에 성공했습니다.");
-      })
-      .catch(function (error) {
-        console.log("공유에 실패했습니다.", error);
-      });
-  } else {
-    // Web Share API를 지원하지 않는 브라우저
-    // 클립보드에 링크 복사
-    var dummy = document.createElement("textarea");
-    document.body.appendChild(dummy);
-    dummy.value = "https://superfinder-event.vercel.app/";
-    dummy.select();
-    document.execCommand("copy");
-    document.body.removeChild(dummy);
-    alert("링크가 복사되었습니다.");
-  }
+$(document).ready(function () {
+  $("#shareBtn").click(function () {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "이벤트 공유하기",
+          url: "https://superfinder-event.vercel.app/",
+        })
+        .then(function () {
+          console.log("공유에 성공했습니다.");
+        })
+        .catch(function (error) {
+          console.log("공유에 실패했습니다.", error);
+        });
+    } else {
+      // Web Share API를 지원하지 않는 브라우저
+      // 클립보드에 링크 복사
+      const link = "https://superfinder-event.vercel.app/";
+      navigator.clipboard
+        .writeText(link)
+        .then(function () {
+          alert("링크가 복사되었습니다. 복사된 링크를 붙여넣어 공유해주세요.");
+        })
+        .catch(function (error) {
+          console.log("링크 복사에 실패했습니다.", error);
+        });
+    }
+  });
 });

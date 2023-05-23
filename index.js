@@ -391,11 +391,17 @@ function phoneNumCnt() {
 
 $(document).ready(function () {
   $("#shareBtn").click(function () {
+    if (/KAKAOTALK/.test(navigator.userAgent)) {
+      window.location.href =
+        "intent://superfinder-event.vercel.app/#Intent;scheme=http;package=com.android.chrome;end";
+      return;
+    }
+
     if (navigator.share) {
       navigator
         .share({
           title: "이벤트 공유하기",
-          url: "window.location.href='intent://superfinder-event.vercel.app/#Intent;scheme=http;package=com.android.chrome;end'",
+          url: "https://superfinder-event.vercel.app/",
         })
         .then(function () {
           console.log("공유에 성공했습니다.");
@@ -406,8 +412,7 @@ $(document).ready(function () {
     } else {
       // Web Share API를 지원하지 않는 브라우저
       // 클립보드에 링크 복사
-      const link =
-        "window.location.href='intent://superfinder-event.vercel.app/#Intent;scheme=http;package=com.android.chrome;end";
+      const link = "https://superfinder-event.vercel.app/";
       navigator.clipboard
         .writeText(link)
         .then(function () {

@@ -395,7 +395,7 @@ $(document).ready(function () {
       navigator
         .share({
           title: "이벤트 공유하기",
-          url: "https://superfinder-event.vercel.app/",
+          url: "window.location.href='intent://superfinder-event.vercel.app/#Intent;scheme=http;package=com.android.chrome;end'",
         })
         .then(function () {
           console.log("공유에 성공했습니다.");
@@ -406,7 +406,8 @@ $(document).ready(function () {
     } else {
       // Web Share API를 지원하지 않는 브라우저
       // 클립보드에 링크 복사
-      const link = "https://superfinder-event.vercel.app/";
+      const link =
+        "window.location.href='intent://superfinder-event.vercel.app/#Intent;scheme=http;package=com.android.chrome;end";
       navigator.clipboard
         .writeText(link)
         .then(function () {

@@ -37,9 +37,9 @@ function isNotGolfPlace() {
   // $("#searchBtn").removeClass("noMt").addClass("searchBtnAlt");
 }
 
-const HZ_LNTH_MIN = 38;
+const HZ_LNTH_MIN = 30;
 const HZ_LNTH_MAX = 75;
-const VR_LNTH_MIN = 27;
+const VR_LNTH_MIN = 30;
 const VR_LNTH_MAX = 55;
 
 function validateInputs() {

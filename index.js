@@ -39,7 +39,7 @@ function hiddenFalse() {
 
 const HZ_LNTH_MIN = 30;
 const HZ_LNTH_MAX = 75;
-const VR_LNTH_MIN = 30;
+const VR_LNTH_MIN = 20;
 const VR_LNTH_MAX = 55;
 
 function validateInputs() {

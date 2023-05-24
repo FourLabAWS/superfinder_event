@@ -24,18 +24,18 @@ function hiddenFalse() {
   // $("#searchBtn").removeClass("searchBtnAlt").addClass("noMt");
 }
 
-function isNotGolfPlace() {
-  $(".tab_text").hide();
-  $(".input_wrap").hide();
-  $(".input_box info").hide();
-  $(".tab_content").hide();
-  $("#PHONE_NUM").hide();
-  $(".phone_num_area").hide();
-  $("#place-guide").text("골프장이 아닙니다.");
-  $(".input_box").removeClass("abs");
-  $(".input_box").addClass("abs2");
-  // $("#searchBtn").removeClass("noMt").addClass("searchBtnAlt");
-}
+// function isNotGolfPlace() {
+//   $(".tab_text").hide();
+//   $(".input_wrap").hide();
+//   $(".input_box info").hide();
+//   $(".tab_content").hide();
+//   $("#PHONE_NUM").hide();
+//   $(".phone_num_area").hide();
+//   $("#place-guide").text("골프장이 아닙니다.");
+//   $(".input_box").removeClass("abs");
+//   $(".input_box").addClass("abs2");
+//   // $("#searchBtn").removeClass("noMt").addClass("searchBtnAlt");
+// }
 
 const HZ_LNTH_MIN = 38;
 const HZ_LNTH_MAX = 75;
@@ -128,10 +128,10 @@ function handlePlaceSelect(places) {
     }
   }
 
-  if (!isGolfPlace) {
-    isNotGolfPlace();
-    return;
-  }
+  // if (!isGolfPlace) {
+  //   isNotGolfPlace();
+  //   return;
+  // }
 
   const params = {
     PLC_ID: $("#PLC_ID").val(),

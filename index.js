@@ -389,6 +389,21 @@ function phoneNumCnt() {
   };
 }
 
+$.ajax({
+  url: "https://ji40ssrbe6.execute-api.ap-northeast-2.amazonaws.com/v1/FlagEvntCnt",
+  type: "GET",
+  contentType: "application/json",
+  success: function (response) {
+    const unique_phone_nums_count = JSON.parse(response.body);
+    $("#unique_phone_nums_count").text(
+      "현재 " + unique_phone_nums_count + " 곳이 등록됐습니다."
+    );
+  },
+  error: function (jqXHR, textStatus, errorThrown) {
+    openToast("서버와 통신 중 오류가 발생하였습니다.", 3000);
+  },
+});
+
 $(document).ready(function () {
   $("#shareBtn").click(function () {
     if (/KAKAOTALK/.test(navigator.userAgent)) {

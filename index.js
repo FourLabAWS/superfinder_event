@@ -305,6 +305,7 @@ function onSave() {
     PHONE_NUM: $("#PHONE_NUM").val(),
     USE_YN: $("#USE_YN").val(),
     CSNT_YN: $('input[name="radio"]:checked').val(),
+    AUTH_YN: $("#AUTH_YN").val(),
   };
 
   $.ajax({
